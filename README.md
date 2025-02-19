@@ -1,8 +1,13 @@
-# React + Vite
+# Read Me
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the front end for Schülerly's prototype, for now it is meant to run locally
 
-Currently, two official plugins are available:
+## How to run
+This repo uses Reat + Vite,
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install Tailwind Css for styling
+
+Install recharts for graphics and charts.
+
+Run npm run dev, to start running it locally.
+
