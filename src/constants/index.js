@@ -18,3 +18,19 @@ import trigonometry from '../assets/trigonometry.png'
         description: 'Your class scored an average of 90% on the latest assignment.'
     }
   ];
+
+export const barData = [
+    { name: 'Alice', PreTest: 70, MidTerm: 85 },
+    { name: 'Bob', PreTest: 65, MidTerm: 75 },
+    { name: 'Charlie', PreTest: 50, MidTerm: 60 },
+    { name: 'Diana', PreTest: 85, MidTerm: 90 },
+    { name: 'Evan', PreTest: 80, MidTerm: 78 },
+];
+
+export const lineData = [
+    { name: 'Q1', avg: 65 },
+    { name: 'Q2', avg: 70 },
+    { name: 'Q3', avg: 72 },
+    { name: 'Q4', avg: 80 },
+];
+
