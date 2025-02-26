@@ -92,7 +92,7 @@ Include a mix of question types (true/false, short answer, ) appropriate for the
 
   return (
     <motion.section
-      className="w-full min-h-screen flex items-center justify-center bg-gray-100 p-6"
+      className="relative w-full min-h-screen mt-18 flex items-center justify-center bg-gray-100 p-6 "
       initial="hidden"
       animate="visible"
       variants={pageVariants}
@@ -149,7 +149,7 @@ Include a mix of question types (true/false, short answer, ) appropriate for the
 
         {/* Scrollable Questions & Answers Preview */}
         <motion.div
-          className="mt-6 w-full max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 p-2"
+          className="mt-6 w-full max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 p-6"
         >
           <h2 className="text-xl font-semibold mb-2 text-center">Quiz Preview</h2>
           {questions.length === 0 ? (
