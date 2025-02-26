@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-    baseURL: "https://api.deepseek.com",
-    apiKey: "sk-2db857754283424a95f86fb87f53b1d9",
-    dangerouslyAllowBrowser: true // Replace with your actual DeepSeek API Key
-  });
+import openai from "../api/openaiClient";
 
 // Page fade-in animation
 const pageVariants = {
