@@ -42,13 +42,22 @@ const Quizzes = () => {
       messages: [
         {
           role: "system",
-          content: `Generate a quiz with 5-10 questions on the topic "${quizTitle}". 
+          content: `Generate a quiz with 15 questions on the topic "${quizTitle}". 
 
-Format:
-[Question]
-[Answer]
-No need to mention the type in the question. No extra *** or anything like that.
-Include a mix of question types (true/false, short answer, multiple-choice). Make answers as well explained as possible, less than 30 words.`,
+Format each question as:
+    [Question text]
+    [Answer text]
+Requirements:
+
+  Explanations must be clear but under 30 words
+  No special formatting or characters (no bold, italics, stars, etc.)
+  Mix difficulty levels for engagement
+  Include key concepts from ${quizTitle}
+  Ensure factual accuracy
+
+Example:
+Q1: True or False: Water boils at 100°C at sea level.
+A1: True. Water boils at 100°C (212°F) at standard atmospheric pressure, which is found at sea level.`,
         },
       ],
       model: "deepseek-chat",

@@ -26,7 +26,7 @@ const ClassCard = ({ image, title, description }) => {
         {
           role: "system",
           content: `You are an AI that generates LaTeX documents. Generate a **two-page summary** in LaTeX for "${title}". 
-                    Only return the LaTeX code, nothing else. Do NOT include \`\`\`latex or \`\`\` in the response.`,
+                    Only return the LaTeX code, nothing else. Do NOT include \`\`\`latex or \`\`\` in the response. `,
         },
       ],
       model: "deepseek-chat",
