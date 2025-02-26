@@ -55,7 +55,6 @@ const ClassCard = ({ image, title, description }) => {
     // Create a URL for the blob
     const url = window.URL.createObjectURL(blob);
 
-    // Open PDF in a new tab - this is the main functionality you wanted
     const newTab = window.open(url, "_blank");
     
     // Ensure the tab was opened successfully (browsers may block it)
@@ -85,7 +84,6 @@ const ClassCard = ({ image, title, description }) => {
       {/* Image */}
       <img src={image} alt={title} className="w-24 h-24 object-cover rounded-md" />
 
-      {/* Text for the card */}
       <div className="flex-1 p-4">
         <h2 className="text-xl font-semibold">{title}</h2>
         <p className="text-gray-600">{description}</p>

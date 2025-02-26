@@ -16,7 +16,7 @@ const cardVariants = {
     transition: { delay: index * 0.2, duration: 0.5 }
   })
 };
-//sdads
+//sdads 
 const Creator = () => {
   return (
     <motion.section 
