@@ -8,7 +8,7 @@ const pageVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-// Question animations (staggered effect)
+// Question animations
 const questionVariants = {
   hidden: { opacity: 0, x: -20 },
   visible: (index) => ({
@@ -22,11 +22,11 @@ const Quizzes = () => {
   const [activeTab, setActiveTab] = useState("automatic");
   const [quizTitle, setQuizTitle] = useState("");
   const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [showNotification, setShowNotification] = useState(false);
 
+  // AI Quiz Generation
   const generateQuiz = async () => {
     if (!quizTitle.trim()) {
       alert("Please enter a quiz title first!");
@@ -42,13 +42,13 @@ const Quizzes = () => {
       messages: [
         {
           role: "system",
-          content: `Generate a quiz with 20 questions on the topic "${quizTitle}" of various difficulties. 
-          
-          Format:
-          [Clear, specific question text]
-          [Concise answer with no explanations]
-          No extra special characters.
-          Include a mix of question types (true/false, short answer, multiple-choice) appropriate for the subject. Questions should test understanding rather than just memorization.`,
+          content: `Generate a quiz with 5-10 questions on the topic "${quizTitle}". 
+
+Format:
+[Question]
+[Answer]
+No need to mention the type in the question. No extra *** or anything like that.
+Include a mix of question types (true/false, short answer, multiple-choice). Make answers as well explained as possible, less than 30 words.`,
         },
       ],
       model: "deepseek-chat",
@@ -60,16 +60,23 @@ const Quizzes = () => {
     const parsedQuestions = quizData.map((q) => {
       const parts = q.split("\n");
       return {
-        question: parts[0].replace(/^\d+\.\s*/, ""), // Remove number from start
+        question: parts[0].replace(/^\d+\.\s*/, ""), // Remove numbering
         answer: parts[1] ? parts[1].replace("Answer: ", "") : "",
       };
     });
 
     setProgress(100);
     setQuestions(parsedQuestions);
-    setAnswers(parsedQuestions.reduce((acc, q) => ({ ...acc, [q.question]: q.answer }), {}));
-
     setLoading(false);
+  };
+
+  // Manual Quiz Creation Functions
+  const addManualQuestion = () => {
+    setQuestions([...questions, { question: "", answer: "" }]);
+  };
+
+  const removeQuestion = (index) => {
+    setQuestions(questions.filter((_, i) => i !== index));
   };
 
   const handleEditQuestion = (index, newText) => {
@@ -124,12 +131,7 @@ const Quizzes = () => {
         {/* Automatic Quiz Section */}
         {activeTab === "automatic" && (
           <>
-            <motion.div
-              className="mb-4 w-full"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
+            <motion.div className="mb-4 w-full">
               <label className="block text-lg font-medium">Quiz Title</label>
               <input
                 type="text"
@@ -144,8 +146,6 @@ const Quizzes = () => {
               className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 mt-2 text-lg font-medium"
               onClick={generateQuiz}
               disabled={loading}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               {loading ? "Generating..." : "AI Create"}
             </motion.button>
@@ -162,68 +162,78 @@ const Quizzes = () => {
             )}
 
             <motion.div className="mt-6 w-full max-h-[300px] overflow-y-auto p-6">
-              <h2 className="text-xl font-semibold mb-2 text-center">Quiz Preview</h2>
-              {questions.length === 0 ? (
-                <motion.p className="text-gray-500 mt-2 text-center">No questions added yet.</motion.p>
-              ) : (
-                <ul className="mt-3 space-y-4">
-                  {questions.map((q, index) => (
-                    <motion.li
-                      key={index}
-                      className="p-4 bg-gray-100 rounded-lg shadow-md"
-                      variants={questionVariants}
-                      initial="hidden"
-                      animate="visible"
-                      custom={index}
-                    >
-                      <input
-                        type="text"
-                        className="font-semibold text-lg w-full bg-transparent border-none focus:outline-none"
-                        value={q.question}
-                        onChange={(e) => handleEditQuestion(index, e.target.value)}
-                      />
-                      <input
-                        type="text"
-                        className="text-sm text-gray-600 w-full bg-transparent border-none focus:outline-none"
-                        value={q.answer}
-                        onChange={(e) => handleEditAnswer(index, e.target.value)}
-                      />
-                    </motion.li>
-                  ))}
-                </ul>
-              )}
+              {questions.map((q, index) => (
+                <motion.div
+                  key={index}
+                  className="p-4 bg-gray-100 rounded-lg shadow-md"
+                  variants={questionVariants}
+                  initial="hidden"
+                  animate="visible"
+                  custom={index}
+                >
+                  <input
+                    type="text"
+                    className="font-semibold text-lg w-full bg-transparent border-none focus:outline-none"
+                    value={q.question}
+                    onChange={(e) => handleEditQuestion(index, e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    className="text-sm text-gray-600 w-full bg-transparent border-none focus:outline-none"
+                    value={q.answer}
+                    onChange={(e) => handleEditAnswer(index, e.target.value)}
+                  />
+                </motion.div>
+              ))}
             </motion.div>
-
-            <motion.button
-              className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 mt-6 text-lg font-medium"
-              onClick={saveQuiz}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Save Quiz
-            </motion.button>
           </>
         )}
 
-        {/* Manual Quiz Section (Placeholder for now) */}
+        {/* Manual Quiz Section */}
         {activeTab === "manual" && (
-          <motion.div className="text-center text-gray-500 mt-6">
-            📝 Manual Quiz Creation Coming Soon!
-          </motion.div>
-        )}
-      </div>
+          <>
+            <button
+              className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 mt-2 text-lg font-medium"
+              onClick={addManualQuestion}
+            >
+              ➕ Add Question
+            </button>
 
-      {showNotification && (
-        <motion.div
-          className="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.3 }}
-        >
-          ✅ Quiz has been saved!
-        </motion.div>
-      )}
+            <motion.div className="mt-6 w-full max-h-[300px] overflow-y-auto p-6">
+              {questions.map((q, index) => (
+                <motion.div
+                  key={index}
+                  className="p-4 bg-gray-100 rounded-lg shadow-md flex flex-col"
+                  variants={questionVariants}
+                  initial="hidden"
+                  animate="visible"
+                  custom={index}
+                >
+                  <input
+                    type="text"
+                    className="font-semibold text-lg w-full bg-transparent border-none focus:outline-none"
+                    value={q.question}
+                    onChange={(e) => handleEditQuestion(index, e.target.value)}
+                    placeholder="Enter question..."
+                  />
+                  <input
+                    type="text"
+                    className="text-sm text-gray-600 w-full bg-transparent border-none focus:outline-none mt-2"
+                    value={q.answer}
+                    onChange={(e) => handleEditAnswer(index, e.target.value)}
+                    placeholder="Enter answer..."
+                  />
+                  <button className="text-red-500 mt-2" onClick={() => removeQuestion(index)}>🗑️ Remove</button>
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
+        )}
+
+        <button className="w-full bg-green-500 text-white py-3 rounded-md mt-6" onClick={saveQuiz}>
+          Save Quiz
+        </button>
+      </div>
     </motion.section>
   );
 };
