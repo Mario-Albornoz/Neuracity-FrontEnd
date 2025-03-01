@@ -200,5 +200,6 @@ const ClassCard = ({ image, title, description }) => {
     </div>
   );
 };
+}
 
 export default ClassCard;
