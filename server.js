@@ -18,11 +18,13 @@ app.post("/generate-pdf", (req, res) => {
   // Write LaTeX to file
   fs.writeFileSync("document.tex", latex);
 
-  // Specify the full path to pdflatex
+  // Specify the full path to pdflatex for mac
   //const latexCommand = "/Library/TeX/texbin/pdflatex -interaction=nonstopmode document.tex";
 
+  //To do: add mac and windows differentiator
+
   // Compile LaTeX to PDF
-  exec(latexCommand, (error, stdout, stderr) => {
+  exec("pdflatex -interaction=nonstopmode document.tex", (error, stdout, stderr) => {
     if (error) {
       console.error(`❌ PDF generation error: ${error.message}`);
       console.error(`📄 STDERR: ${stderr}`); // Log LaTeX errors

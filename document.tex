@@ -1,8 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{booktabs}
 
 \title{Statistics (M134) - Chapter 12 Summary}
 \author{}
@@ -12,51 +10,51 @@
 
 \maketitle
 
-\section{Introduction}
-Chapter 12 of Statistics (M134) focuses on advanced topics in statistical inference, particularly hypothesis testing and confidence intervals for population parameters. This chapter builds on the foundational concepts introduced in earlier chapters and extends them to more complex scenarios.
+\section{Introduction to Chapter 12}
+Chapter 12 of Statistics (M134) focuses on advanced topics in statistical inference, particularly hypothesis testing and confidence intervals for population parameters. This chapter builds on the foundational concepts introduced earlier in the course and extends them to more complex scenarios.
 
 \section{Hypothesis Testing}
 \subsection{Null and Alternative Hypotheses}
 In hypothesis testing, we start by defining two competing hypotheses:
 \begin{itemize}
     \item \textbf{Null Hypothesis ($H_0$)}: A statement of no effect or no difference.
-    \item \textbf{Alternative Hypothesis ($H_a$)}: A statement that contradicts the null hypothesis, indicating the presence of an effect or difference.
+    \item \textbf{Alternative Hypothesis ($H_a$)}: A statement that contradicts the null hypothesis.
 \end{itemize}
 
 \subsection{Test Statistics}
-A test statistic is a standardized value used to determine the likelihood of the null hypothesis. For a sample mean $\bar{X}$, the test statistic $Z$ is calculated as:
+A test statistic is a standardized value used to determine the plausibility of the null hypothesis. For a sample mean $\bar{X}$, the test statistic is calculated as:
 \[
 Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
 \]
 where $\mu_0$ is the hypothesized population mean, $\sigma$ is the population standard deviation, and $n$ is the sample size.
 
-\subsection{P-Values and Significance Levels}
-The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one observed, assuming the null hypothesis is true. If the p-value is less than the significance level $\alpha$, we reject the null hypothesis.
+\subsection{P-Values}
+The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one observed, assuming the null hypothesis is true. A small p-value (typically less than 0.05) suggests that the null hypothesis should be rejected.
 
 \section{Confidence Intervals}
 \subsection{Definition}
-A confidence interval provides a range of values within which the population parameter is expected to lie, with a certain level of confidence. For a population mean $\mu$, the confidence interval is given by:
+A confidence interval provides a range of values within which the true population parameter is expected to lie, with a certain level of confidence (e.g., 95\%).
+
+\subsection{Calculation}
+For a population mean $\mu$, the confidence interval is calculated as:
 \[
 \bar{X} \pm Z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)
 \]
 where $Z_{\alpha/2}$ is the critical value from the standard normal distribution corresponding to the desired confidence level.
 
-\subsection{Interpretation}
-A 95\% confidence interval means that if we were to take 100 different samples and compute a confidence interval for each, approximately 95 of them would contain the true population parameter.
+\section{Types of Errors}
+\subsection{Type I Error}
+A Type I error occurs when the null hypothesis is rejected when it is actually true. The probability of a Type I error is denoted by $\alpha$.
 
-\section{Applications}
-\subsection{One-Sample Z-Test}
-The one-sample Z-test is used to determine whether the sample mean $\bar{X}$ differs significantly from a known population mean $\mu_0$. The test statistic is calculated as:
-\[
-Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
-\]
+\subsection{Type II Error}
+A Type II error occurs when the null hypothesis is not rejected when it is actually false. The probability of a Type II error is denoted by $\beta$.
 
-\subsection{Two-Sample Z-Test}
-The two-sample Z-test compares the means of two independent samples. The test statistic is:
+\section{Power of a Test}
+The power of a hypothesis test is the probability of correctly rejecting the null hypothesis when it is false. It is calculated as:
 \[
-Z = \frac{(\bar{X}_1 - \bar{X}_2) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}
+\text{Power} = 1 - \beta
 \]
-where $\bar{X}_1$ and $\bar{X}_2$ are the sample means, $\mu_1$ and $\mu_2$ are the population means, and $n_1$ and $n_2$ are the sample sizes.
+The power of a test increases with larger sample sizes and larger effect sizes.
 
 \section{Conclusion}
 Chapter 12 provides a comprehensive overview of hypothesis testing and confidence intervals, essential tools for making inferences about population parameters. Understanding these concepts is crucial for applying statistical methods in real-world scenarios.
