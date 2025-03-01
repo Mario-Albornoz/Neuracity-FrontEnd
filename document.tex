@@ -1,10 +1,10 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{booktabs}
 
-\title{Trigonometry (T221) - Chapter 3 Summary}
+\title{Statistics (M134) - Chapter 12 Summary}
 \author{}
 \date{}
 
@@ -12,114 +12,53 @@
 
 \maketitle
 
-\section*{Chapter 3: Trigonometric Identities and Equations}
+\section{Introduction}
+Chapter 12 of Statistics (M134) focuses on advanced topics in statistical inference, particularly hypothesis testing and confidence intervals for population parameters. This chapter builds on the foundational concepts introduced in earlier chapters and extends them to more complex scenarios.
 
-\subsection*{3.1 Fundamental Trigonometric Identities}
-The fundamental trigonometric identities are the building blocks for simplifying and solving trigonometric expressions and equations. The most important identities include:
-
+\section{Hypothesis Testing}
+\subsection{Null and Alternative Hypotheses}
+In hypothesis testing, we start by defining two competing hypotheses:
 \begin{itemize}
-    \item \textbf{Pythagorean Identities:}
-    \[
-    \sin^2\theta + \cos^2\theta = 1
-    \]
-    \[
-    1 + \tan^2\theta = \sec^2\theta
-    \]
-    \[
-    1 + \cot^2\theta = \csc^2\theta
-    \]
-    
-    \item \textbf{Reciprocal Identities:}
-    \[
-    \sin\theta = \frac{1}{\csc\theta}, \quad \cos\theta = \frac{1}{\sec\theta}, \quad \tan\theta = \frac{1}{\cot\theta}
-    \]
-    
-    \item \textbf{Quotient Identities:}
-    \[
-    \tan\theta = \frac{\sin\theta}{\cos\theta}, \quad \cot\theta = \frac{\cos\theta}{\sin\theta}
-    \]
-    
-    \item \textbf{Even-Odd Identities:}
-    \[
-    \sin(-\theta) = -\sin\theta, \quad \cos(-\theta) = \cos\theta, \quad \tan(-\theta) = -\tan\theta
-    \]
+    \item \textbf{Null Hypothesis ($H_0$)}: A statement of no effect or no difference.
+    \item \textbf{Alternative Hypothesis ($H_a$)}: A statement that contradicts the null hypothesis, indicating the presence of an effect or difference.
 \end{itemize}
 
-\subsection*{3.2 Verifying Trigonometric Identities}
-Verifying trigonometric identities involves proving that one side of an equation is equal to the other side using known identities. The general strategy is to:
+\subsection{Test Statistics}
+A test statistic is a standardized value used to determine the likelihood of the null hypothesis. For a sample mean $\bar{X}$, the test statistic $Z$ is calculated as:
+\[
+Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
+\]
+where $\mu_0$ is the hypothesized population mean, $\sigma$ is the population standard deviation, and $n$ is the sample size.
 
-\begin{itemize}
-    \item Start with the more complex side of the equation.
-    \item Use algebraic manipulations and fundamental identities to simplify.
-    \item Transform the expression step-by-step until it matches the other side.
-\end{itemize}
+\subsection{P-Values and Significance Levels}
+The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one observed, assuming the null hypothesis is true. If the p-value is less than the significance level $\alpha$, we reject the null hypothesis.
 
-\subsection*{3.3 Sum and Difference Identities}
-The sum and difference identities allow us to express the sine, cosine, and tangent of the sum or difference of two angles in terms of the sines and cosines of the individual angles.
+\section{Confidence Intervals}
+\subsection{Definition}
+A confidence interval provides a range of values within which the population parameter is expected to lie, with a certain level of confidence. For a population mean $\mu$, the confidence interval is given by:
+\[
+\bar{X} \pm Z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)
+\]
+where $Z_{\alpha/2}$ is the critical value from the standard normal distribution corresponding to the desired confidence level.
 
-\begin{itemize}
-    \item \textbf{Sine of Sum and Difference:}
-    \[
-    \sin(A \pm B) = \sin A \cos B \pm \cos A \sin B
-    \]
-    
-    \item \textbf{Cosine of Sum and Difference:}
-    \[
-    \cos(A \pm B) = \cos A \cos B \mp \sin A \sin B
-    \]
-    
-    \item \textbf{Tangent of Sum and Difference:}
-    \[
-    \tan(A \pm B) = \frac{\tan A \pm \tan B}{1 \mp \tan A \tan B}
-    \]
-\end{itemize}
+\subsection{Interpretation}
+A 95\% confidence interval means that if we were to take 100 different samples and compute a confidence interval for each, approximately 95 of them would contain the true population parameter.
 
-\subsection*{3.4 Double-Angle and Half-Angle Identities}
-Double-angle and half-angle identities are derived from the sum identities and are useful in simplifying expressions involving trigonometric functions of multiple angles.
+\section{Applications}
+\subsection{One-Sample Z-Test}
+The one-sample Z-test is used to determine whether the sample mean $\bar{X}$ differs significantly from a known population mean $\mu_0$. The test statistic is calculated as:
+\[
+Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
+\]
 
-\begin{itemize}
-    \item \textbf{Double-Angle Identities:}
-    \[
-    \sin 2\theta = 2 \sin\theta \cos\theta
-    \]
-    \[
-    \cos 2\theta = \cos^2\theta - \sin^2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta
-    \]
-    \[
-    \tan 2\theta = \frac{2\tan\theta}{1 - \tan^2\theta}
-    \]
-    
-    \item \textbf{Half-Angle Identities:}
-    \[
-    \sin\left(\frac{\theta}{2}\right) = \pm \sqrt{\frac{1 - \cos\theta}{2}}
-    \]
-    \[
-    \cos\left(\frac{\theta}{2}\right) = \pm \sqrt{\frac{1 + \cos\theta}{2}}
-    \]
-    \[
-    \tan\left(\frac{\theta}{2}\right) = \pm \sqrt{\frac{1 - \cos\theta}{1 + \cos\theta}} = \frac{\sin\theta}{1 + \cos\theta} = \frac{1 - \cos\theta}{\sin\theta}
-    \]
-\end{itemize}
+\subsection{Two-Sample Z-Test}
+The two-sample Z-test compares the means of two independent samples. The test statistic is:
+\[
+Z = \frac{(\bar{X}_1 - \bar{X}_2) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}
+\]
+where $\bar{X}_1$ and $\bar{X}_2$ are the sample means, $\mu_1$ and $\mu_2$ are the population means, and $n_1$ and $n_2$ are the sample sizes.
 
-\subsection*{3.5 Solving Trigonometric Equations}
-Solving trigonometric equations involves finding all angles that satisfy the equation. The general approach is:
-
-\begin{itemize}
-    \item Use algebraic techniques to isolate the trigonometric function.
-    \item Apply inverse trigonometric functions to find the principal solution.
-    \item Use the periodicity of trigonometric functions to find all solutions.
-\end{itemize}
-
-\subsection*{3.6 Applications of Trigonometric Identities}
-Trigonometric identities are widely used in various fields such as physics, engineering, and computer graphics. They are essential for:
-
-\begin{itemize}
-    \item Simplifying complex expressions.
-    \item Solving trigonometric equations.
-    \item Modeling periodic phenomena.
-\end{itemize}
-
-\section*{Conclusion}
-Chapter 3 of Trigonometry (T221) introduces the fundamental identities and techniques for simplifying and solving trigonometric expressions and equations. Mastery of these concepts is crucial for further study in mathematics and its applications.
+\section{Conclusion}
+Chapter 12 provides a comprehensive overview of hypothesis testing and confidence intervals, essential tools for making inferences about population parameters. Understanding these concepts is crucial for applying statistical methods in real-world scenarios.
 
 \end{document}

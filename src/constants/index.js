@@ -14,7 +14,7 @@ import trigonometry from '../assets/trigonometry.png'
     },
     {
         image: statistics,
-        title :'Geogrpahy (B543) - Chapter 1',
+        title :'Geography (B543) - Chapter 1',
         description: 'Your class scored an average of 90% on the latest assignment.'
     }
   ];
