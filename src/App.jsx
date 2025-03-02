@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import {Home, Quizzes,Creator, Classroom, Support} from './pages'
+import {Home, Quizzes, Creator, Classroom, Support, CoursePlanner} from './pages'
 import Navbar from "./components/Navbar"
 
 const App = () => {
@@ -14,6 +14,7 @@ const App = () => {
           <Route path="/quizzes" element={<Quizzes />} />
           <Route path="/classroom" element={<Classroom />} />
           <Route path="/creator" element={<Creator/> } />
+          <Route path="/coursePlanner" element={<CoursePlanner/> } />
           <Route path="/support" element={<Support/> } />
         </Routes>
       </Router>
