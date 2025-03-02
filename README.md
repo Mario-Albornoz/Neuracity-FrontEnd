@@ -7,12 +7,13 @@ AI-powered education management platform for school teachers that automates cont
 ## How to run
 This repo uses Reat + Vite,
 
-Install Tailwind Css for styling
+## Install 
 
-Install recharts for graphics and charts.
+Tailwind Css for styling
+recharts for graphics and charts.
+@mui/icons-material
+@emotion/react @emotion/styled (if it doesn't work with these two, check the error message and install the dependency it asks for)
 
-Run npm install @mui/icons-material
-Run npm i @emotion/react @emotion/styled (if it doesn't work with these two, check the error message and install the dependency it asks for)
 
 Run npm run dev, to start running it locally.
 
