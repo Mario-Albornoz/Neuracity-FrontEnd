@@ -35,6 +35,14 @@ const Navbar = () => {
             Creator
         </NavLink>
         <NavLink 
+            to="/coursePlanner" 
+            className={({ isActive }) => 
+            `${isActive ? "text-blue-600" : ""} outline-gray-500 p-1 rounded`
+            }
+        >
+            Course Planner
+        </NavLink>
+        <NavLink 
             to="/Support" 
             className={({ isActive }) => 
             `${isActive ? "text-blue-600" : ""} outline-gray-500 p-1 rounded`
