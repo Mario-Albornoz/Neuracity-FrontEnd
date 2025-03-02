@@ -11,7 +11,7 @@ This repo uses Reat + Vite, and Node.js for the backend.
 
 Tailwind Css for styling <br />
 recharts for graphics and charts. <br/>
-@mui/icons-material
+@mui/icons-material <br />
 @emotion/react @emotion/styled (if it doesn't work with these two, check the error message and install the dependency it asks for)
 
 For the Backend you should install:
