@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import OpenAI from "openai";
+import { pdf } from "/src/assets";
 
 const openai = new OpenAI({
   baseURL: "https://api.deepseek.com",
@@ -14,6 +15,7 @@ const Modal = ({ onClose, classTitle }) => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [successMessage, setSuccessMessage] = useState("");
+  const [pdfGenerated, setPdfGenerated] = useState(false);
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -27,6 +29,7 @@ const Modal = ({ onClose, classTitle }) => {
 
     setLoading(true);
     setProgress(20);
+    setPdfGenerated(false);
     console.log(`📢 Generating LaTeX ${selectedOption} for: ${classTitle}`);
 
     // Set up prompt based on the seleceted option
@@ -68,34 +71,40 @@ const Modal = ({ onClose, classTitle }) => {
 
       setProgress(100);
 
-      // Convert response to a blob
-      const blob = await pdfResponse.blob();
 
-      // Create a URL for the PDF
-      const pdfUrl = URL.createObjectURL(blob);
-
-      // Open PDF in a new tab first
-      const pdfWindow = window.open(pdfUrl, "_blank");
 
       // Now, show the success message in the main window
       setSuccessMessage(`Generated ${selectedOption} PDF for "${classTitle}".`);
 
+      setPdfGenerated(true);
       // Clear the success message after a short delay
       setTimeout(() => {
         setSuccessMessage("");
       }, 5000); // Clear after 5 seconds or adjust as necessary
 
-    // } catch (error) {
-    //   console.error("❌ Error:", error);
-    //   alert("Failed to generate content. Try again.");
-    } finally {
-      // Allow the browser to update the UI before executing more actions
-      setTimeout(() => {
-        setProgress(0);
-        setLoading(false);
-        onClose();
-      }, 500); // Small delay to avoid blocking the UI thread
+    } catch (error) {
+    console.error("❌ Error:", error);
+
+    if (error.response) {
+      // If it's an API error with a response
+      console.error("📌 Response Data:", error.response.data);
+      console.error("📌 Response Status:", error.response.status);
+      console.error("📌 Response Headers:", error.response.headers);
+      //alert(`Failed to generate content. Server responded with: ${error.response.status}`);
+    } else if (error.request) {
+      // If the request was made but no response received
+      console.error("📌 Request Details:", error.request);
+      //alert("Failed to generate content. No response from server.");
+    } else {
+      // Other errors (e.g., syntax errors, network issues)
+      console.error("📌 Error Message:", error.message);
+      console.error("📌 Stack Trace:", error.stack);
+      //alert(`Failed to generate content. Error: ${error.message}`);
     }
+  } finally {
+    setLoading(false);
+    setProgress(0);
+  }
   };
 
   return (

@@ -1,130 +1,54 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import OpenAI from "openai";
 import ClassCard from "../components/ClassCard";
 import { classes } from "../constants";
+import { pdf } from "../assets"
 
-const openai = new OpenAI({
-  baseURL: "https://api.deepseek.com",
-  apiKey: "sk-2db857754283424a95f86fb87f53b1d9",
-  dangerouslyAllowBrowser: true,
-});
-
-const Modal = ({ onClose, classTitle }) => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
-
-
-  const generateContent = async () => {
-    if (!selectedOption) {
-      alert("Please select a content type!");
-      return;
-    }
-
-    setLoading(true);
-    setProgress(20);
-    console.log(`📢 Generating ${selectedOption} for: ${classTitle}`);
-
-    const aiPrompt = {
-      flashcards: `Generate flashcards based on the chapter "${classTitle}". Return them in JSON format with "question" and "answer".`,
-      chapterNotes: `Create a detailed chapter summary for "${classTitle}" in well-structured paragraphs.`,
-      mindmaps: `Generate a structured mindmap outline for "${classTitle}" in a nested bullet point format.`,
-      assignments: `Generate 5 challenging assignments with detailed answers for "${classTitle}".`,
-    };
-
-    try {
-      setProgress(40);
-      const response = await openai.chat.completions.create({
-        messages: [{ role: "system", content: aiPrompt[selectedOption] }],
-        model: "deepseek-chat",
-      });
-
-      setProgress(80);
-      console.log("✅ AI Response:", response.choices[0].message.content);
-
-      setProgress(100);
-      alert(`Generated ${selectedOption} for "${classTitle}". Check console.`);
-    } catch (error) {
-      console.error("❌ AI Generation Failed:", error);
-      alert("Failed to generate content. Try again.");
-    } finally {
-      setTimeout(() => {
-        setProgress(0);
-        setLoading(false);
-        onClose();
-      }, 1000);
-    }
-  };
-
+const Modal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 z-60">
-        <h2 className="text-xl font-semibold mb-4 p-2 underline">Generate Material</h2>
-        <p className="mb-4 p-2">Select the type of material to generate for:</p>
-        <h3 className="font-bold text-center mb-4">{classTitle}</h3>
+      <div className="bg-white p-3 rounded-lg shadow-lg w-96 z-60">
+        {/* <div className="rounded-lg items-start flex justify-items-end">
+          <button 
+          className="mt-2 px-4 py-2 border rounded-md bg-gray-100 hover:bg-gray-200"
+          onClick={onClose}
+          >
+            Return
+          </button>
+        </div> */}
 
-        {/* Radio Buttons */}
-        <div className="space-y-2 mb-4 p-2">
-          {["flashcards", "chapterNotes", "mindmaps", "assignments"].map((type) => (
-            <label key={type} className="flex items-center space-x-2">
-              <input
-                type="radio"
-                name="materialType"
-                value={type}
-                checked={selectedOption === type}
-                onChange={handleOptionChange}
-                className="h-5 w-5"
-                disabled={loading}
+        <div className="flex justify-center mt-2">
+          <a href="document.pdf" target="_blank" rel="noopener noreferrer"> 
+            <h3 className='flex flex-col items-center border-1 p-2 rounded-lg'>
+              <img
+                src={pdf}
+                alt=''
+                className='w-12 h-12 object-contain'
               />
-              <span>{type.charAt(0).toUpperCase() + type.slice(1)}</span>
-            </label>
-          ))}
+              <span>Pre-view</span>
+            </h3>
+          </a>
         </div>
 
-        {/* Loading Bar */}
-        {loading && (
-          <motion.div
-            className="w-full h-2 bg-gray-200 mt-3 rounded-md overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
+        <div className="rounded-lg flex justify-center gap-4 p-4">
+          <button 
+          className="mt-2 px-4 py-2  w-50 border-2 rounded-md bg-gray-400 hover:bg-gray-500 text-white"
+          onClick={onClose}
           >
-            <motion.div
-              className="h-full bg-blue-500 rounded-md"
-              initial={{ width: "0%" }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 1 }}
-            />
-          </motion.div>
-        )}
-
-        {/* Buttons */}
-        <div className="flex justify-between mt-4">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500"
-            disabled={loading}
-          >
-            Cancel
+            Return
           </button>
-          <button
-            onClick={generateContent}
-            className="px-4 py-2 bg-blue-400 text-white rounded-md hover:bg-blue-500"
-            disabled={loading}
+          <button 
+            className="mt-2 px-4 py-2  w-50 border-2 rounded-md bg-blue-400 text-white hover:bg-blue-500"
+            onClick={() => window.open("document.pdf", "_blank", "noopener,noreferrer")}
           >
-            {loading ? "Generating..." : "Generate"}
+            View Material
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
 
+}
 
 const Creator = () => {
   const [showModal, setShowModal] = useState(false);
@@ -157,9 +81,13 @@ const Creator = () => {
           />
         ))}
       </motion.div>
-
-      {/* Modal */}
-      {showModal && <Modal classTitle={selectedClassTitle} onClose={() => setShowModal(false)} />}
+      <button
+      className="mt-5 px-4 py-2 border rounded-md bg-gray-100 hover:bg-gray-200"
+      onClick={handleGenerateClick}
+      >
+        See Generated Material
+      </button>
+              {showModal && <Modal onClose={() => setShowModal(false)} />}
     </motion.section>
   );
 };

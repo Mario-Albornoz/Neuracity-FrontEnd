@@ -1,62 +1,35 @@
-\documentclass{article}
-\usepackage{amsmath}
-\usepackage{amssymb}
-
-\title{Statistics (M134) - Chapter 12 Summary}
-\author{}
-\date{}
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{mindmap}
 
 \begin{document}
 
-\maketitle
-
-\section{Introduction to Chapter 12}
-Chapter 12 of Statistics (M134) focuses on advanced topics in statistical inference, particularly hypothesis testing and confidence intervals for population parameters. This chapter builds on the foundational concepts introduced earlier in the course and extends them to more complex scenarios.
-
-\section{Hypothesis Testing}
-\subsection{Null and Alternative Hypotheses}
-In hypothesis testing, we start by defining two competing hypotheses:
-\begin{itemize}
-    \item \textbf{Null Hypothesis ($H_0$)}: A statement of no effect or no difference.
-    \item \textbf{Alternative Hypothesis ($H_a$)}: A statement that contradicts the null hypothesis.
-\end{itemize}
-
-\subsection{Test Statistics}
-A test statistic is a standardized value used to determine the plausibility of the null hypothesis. For a sample mean $\bar{X}$, the test statistic is calculated as:
-\[
-Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
-\]
-where $\mu_0$ is the hypothesized population mean, $\sigma$ is the population standard deviation, and $n$ is the sample size.
-
-\subsection{P-Values}
-The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one observed, assuming the null hypothesis is true. A small p-value (typically less than 0.05) suggests that the null hypothesis should be rejected.
-
-\section{Confidence Intervals}
-\subsection{Definition}
-A confidence interval provides a range of values within which the true population parameter is expected to lie, with a certain level of confidence (e.g., 95\%).
-
-\subsection{Calculation}
-For a population mean $\mu$, the confidence interval is calculated as:
-\[
-\bar{X} \pm Z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)
-\]
-where $Z_{\alpha/2}$ is the critical value from the standard normal distribution corresponding to the desired confidence level.
-
-\section{Types of Errors}
-\subsection{Type I Error}
-A Type I error occurs when the null hypothesis is rejected when it is actually true. The probability of a Type I error is denoted by $\alpha$.
-
-\subsection{Type II Error}
-A Type II error occurs when the null hypothesis is not rejected when it is actually false. The probability of a Type II error is denoted by $\beta$.
-
-\section{Power of a Test}
-The power of a hypothesis test is the probability of correctly rejecting the null hypothesis when it is false. It is calculated as:
-\[
-\text{Power} = 1 - \beta
-\]
-The power of a test increases with larger sample sizes and larger effect sizes.
-
-\section{Conclusion}
-Chapter 12 provides a comprehensive overview of hypothesis testing and confidence intervals, essential tools for making inferences about population parameters. Understanding these concepts is crucial for applying statistical methods in real-world scenarios.
+\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=blue!30, text=white, level 1/.append style={level distance=5cm,sibling angle=90}, level 2/.append style={level distance=3cm,sibling angle=45}]
+  \node[concept] {Cell Biology (B221) - Chapter 8}
+    child [concept color=green!30] { node {Cell Structure}
+      child { node {Cell Membrane} }
+      child { node {Cytoplasm} }
+      child { node {Nucleus} }
+      child { node {Organelles} }
+    }
+    child [concept color=red!30] { node {Cell Function}
+      child { node {Metabolism} }
+      child { node {Transport} }
+      child { node {Communication} }
+      child { node {Reproduction} }
+    }
+    child [concept color=yellow!30] { node {Cell Types}
+      child { node {Prokaryotic} }
+      child { node {Eukaryotic} }
+      child { node {Animal Cells} }
+      child { node {Plant Cells} }
+    }
+    child [concept color=purple!30] { node {Cell Processes}
+      child { node {Photosynthesis} }
+      child { node {Respiration} }
+      child { node {Cell Division} }
+      child { node {Protein Synthesis} }
+    };
+\end{tikzpicture}
 
 \end{document}
