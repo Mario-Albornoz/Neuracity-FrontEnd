@@ -1,40 +1,76 @@
-\documentclass{standalone}
-\usepackage{tikz}
-\usetikzlibrary{mindmap}
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Cell Biology (B221) - Chapter 8 Summary}
+\author{}
+\date{}
 
 \begin{document}
 
-\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=blue!40, 
-    level 1/.append style={level distance=5cm,sibling angle=90},
-    level 2/.append style={level distance=3cm,sibling angle=45}]
-    
-    \node{Statistics (M134) - Chapter 12}
-        child [concept color=red!30] { node {Hypothesis Testing}
-            child { node {Null Hypothesis ($H_0$)} }
-            child { node {Alternative Hypothesis ($H_1$)} }
-            child { node {Type I Error} }
-            child { node {Type II Error} }
-            child { node {Significance Level ($\alpha$)} }
-            child { node {P-Value} }
-        }
-        child [concept color=green!30] { node {Confidence Intervals}
-            child { node {Margin of Error} }
-            child { node {Confidence Level} }
-            child { node {Z-Score} }
-            child { node {T-Score} }
-        }
-        child [concept color=yellow!30] { node {Regression Analysis}
-            child { node {Simple Linear Regression} }
-            child { node {Multiple Regression} }
-            child { node {Correlation Coefficient} }
-            child { node {Residual Analysis} }
-        }
-        child [concept color=purple!30] { node {ANOVA}
-            child { node {One-Way ANOVA} }
-            child { node {Two-Way ANOVA} }
-            child { node {F-Test} }
-            child { node {Post-Hoc Tests} }
-        };
-\end{tikzpicture}
+\maketitle
+
+\section{Introduction}
+Chapter 8 of Cell Biology (B221) focuses on the structure and function of the cell membrane, its components, and the processes that occur across it. The chapter also delves into the mechanisms of transport, signaling, and cell communication.
+
+\section{Cell Membrane Structure}
+The cell membrane, also known as the plasma membrane, is a selectively permeable barrier that surrounds the cell. It is composed of a phospholipid bilayer with embedded proteins, cholesterol, and carbohydrates.
+
+\subsection{Phospholipid Bilayer}
+The phospholipid bilayer is the fundamental structure of the cell membrane. It consists of two layers of phospholipids, with hydrophilic heads facing outward and hydrophobic tails facing inward.
+
+\subsection{Membrane Proteins}
+Membrane proteins are embedded within the phospholipid bilayer and perform various functions, including transport, signaling, and cell recognition. They can be classified as integral or peripheral proteins.
+
+\subsection{Cholesterol and Carbohydrates}
+Cholesterol molecules are interspersed within the phospholipid bilayer, providing stability and fluidity. Carbohydrates are attached to proteins (glycoproteins) or lipids (glycolipids) on the extracellular surface, playing a role in cell recognition and communication.
+
+\section{Membrane Transport}
+The cell membrane regulates the movement of substances in and out of the cell through various transport mechanisms.
+
+\subsection{Passive Transport}
+Passive transport does not require energy and includes diffusion, osmosis, and facilitated diffusion.
+
+\subsubsection{Diffusion}
+Diffusion is the movement of molecules from an area of higher concentration to an area of lower concentration. It can be described by Fick's Law:
+\[
+J = -D \frac{dC}{dx}
+\]
+where \( J \) is the flux, \( D \) is the diffusion coefficient, and \( \frac{dC}{dx} \) is the concentration gradient.
+
+\subsubsection{Osmosis}
+Osmosis is the diffusion of water across a selectively permeable membrane. The osmotic pressure (\( \Pi \)) can be calculated using the van't Hoff equation:
+\[
+\Pi = iCRT
+\]
+where \( i \) is the van't Hoff factor, \( C \) is the molar concentration, \( R \) is the gas constant, and \( T \) is the temperature.
+
+\subsubsection{Facilitated Diffusion}
+Facilitated diffusion involves the movement of molecules through membrane proteins, such as channels or carriers, down their concentration gradient.
+
+\subsection{Active Transport}
+Active transport requires energy, usually in the form of ATP, to move molecules against their concentration gradient. This includes primary and secondary active transport.
+
+\subsubsection{Primary Active Transport}
+Primary active transport directly uses ATP to pump molecules across the membrane. An example is the sodium-potassium pump (Na\(^+\)/K\(^+\) ATPase).
+
+\subsubsection{Secondary Active Transport}
+Secondary active transport uses the energy stored in an electrochemical gradient to transport molecules. This includes symporters and antiporters.
+
+\section{Cell Signaling}
+Cell signaling is the process by which cells communicate with each other to coordinate activities. It involves signal molecules, receptors, and intracellular signaling pathways.
+
+\subsection{Signal Molecules}
+Signal molecules, or ligands, can be hormones, neurotransmitters, or growth factors. They bind to specific receptors on the cell surface or inside the cell.
+
+\subsection{Receptors}
+Receptors are proteins that bind to signal molecules and initiate a cellular response. They can be classified as membrane-bound receptors (e.g., G-protein-coupled receptors) or intracellular receptors (e.g., steroid hormone receptors).
+
+\subsection{Intracellular Signaling Pathways}
+Intracellular signaling pathways transmit the signal from the receptor to the target molecules within the cell. Common pathways include the cAMP pathway, the phosphoinositide pathway, and the MAPK/ERK pathway.
+
+\section{Conclusion}
+Chapter 8 provides a comprehensive overview of the cell membrane's structure and function, emphasizing its role in transport and signaling. Understanding these processes is crucial for grasping how cells maintain homeostasis and communicate with their environment.
 
 \end{document}

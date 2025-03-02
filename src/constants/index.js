@@ -19,6 +19,30 @@ import trigonometry from '../assets/trigonometry.png'
     }
   ];
 
+  export const coursePlannerClasses = [
+    {
+      courseName:"Statistics Chapter - 1",
+      courseWeek:"1",
+      courseType:"Lecture",
+      courseObjective:"Master statistical methods to analyze data and make informed decisions effectively.",
+      courseDesc:"In this lecture, we will explore the fundamentals of probability theory, including key concepts such as random variables, probability distributions, and the rules of probability. Through  real-world examples, we’ll discuss how probability forms the foundation for statistical inference and decision-making.",
+    },
+    {
+      courseName:"Statistics Chapter - 2",
+      courseWeek:"2",
+      courseType:"Assesment",
+      courseObjective:"Master statistical methods to analyze data and make informed decisions effectively.",
+      courseDesc:"This assessment will test your understanding of probability concepts covered in the lecture. You will solve problems involving probability rules, calculate probabilities for discrete and continuous random variables, and interpret probability distributions. Submit your solutions with clear reasoning and steps.",
+    },
+    {
+      courseName:"Statistics Chapter - 3",
+      courseWeek:"3",
+      courseType:"Lecture",
+      courseObjective:"Develop skills to collect, analyze, and interpret data for practical applications",
+      courseDesc:"In this lecture, we will dive into hypothesis testing, focusing on the steps involved in formulating null and alternative hypotheses, selecting significance levels, and interpreting p-values. We’ll also cover common tests like the t-test and z-test, using practical examples to illustrate their applications in research and data analysis",
+    }
+  ]
+
 export const barData = [
     { name: 'Alice', PreTest: 70, MidTerm: 85 },
     { name: 'Bob', PreTest: 65, MidTerm: 75 },

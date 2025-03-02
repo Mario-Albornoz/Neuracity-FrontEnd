@@ -31,7 +31,6 @@ CourseCard.defaultProps = {
     courseName: "Example",
     courseWeek: "Example",
     courseType: "Example",
-    courseName: "Example",
     courseObjective: "Example",
     courseDesc: "Example",
 }

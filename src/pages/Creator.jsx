@@ -8,15 +8,6 @@ const Modal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30">
       <div className="bg-white p-3 rounded-lg shadow-lg w-96 z-60">
-        {/* <div className="rounded-lg items-start flex justify-items-end">
-          <button 
-          className="mt-2 px-4 py-2 border rounded-md bg-gray-100 hover:bg-gray-200"
-          onClick={onClose}
-          >
-            Return
-          </button>
-        </div> */}
-
         <div className="flex justify-center mt-2">
           <a href="document.pdf" target="_blank" rel="noopener noreferrer"> 
             <h3 className='flex flex-col items-center border-1 p-2 rounded-lg'>
