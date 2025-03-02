@@ -54,9 +54,10 @@ const Modal = ({ onClose, classTitle }) => {
       latexContent = latexContent.replace(/^```latex/, "").replace(/```$/, "").trim();
 
       console.log("✅ Generated LaTeX:", latexContent);
-      
+      setProgress(100);
+      alert(`Content Generated!! ✅. Check "See Generated Material"`)
       //send latex content to back end to turn into pdf
-      setProgress(80);
+      //setProgress(80);
       
       const pdfResponse = await fetch("http://localhost:3000/generate-pdf", {
       method: "POST",
